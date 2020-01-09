@@ -17,11 +17,13 @@ libsrtp_la_SOURCES =    srtp/srtp.c srtp/ekt.c crypto/cipher/cipher.c crypto/cip
 			crypto/kernel/err.c \
 			crypto/replay/rdb.c crypto/replay/rdbx.c crypto/replay/ut_sim.c 
 
-libsrtp_la_LDFLAGS = 	-version-info 1:42:1
+libsrtp_la_LDFLAGS = 	-version-info 2:3:0
 
 EXTRA_DIST=
 
 if ENABLE_OPENSSL
+AM_CPPFLAGS += -DGCM
+AM_CFLAGS += -DGCM
 libsrtp_la_SOURCES += crypto/cipher/aes_icm_ossl.c crypto/cipher/aes_gcm_ossl.c
 libsrtp_la_SOURCES += crypto/hash/hmac_ossl.c
 else
